@@ -1,5 +1,7 @@
 import re
 import pandas as pd
+import datetime
+from time import mktime
 
 # Safely replace characters from a field
 def removeChar(charField, characterToRemove):
@@ -53,3 +55,9 @@ def count_words(dataframe, new_field, countwordfield):
     dataframe[new_field] = dataframe[countwordfield].apply(lambda x: word_count(x))
     return
     # example:  count_words(df, 'RESPONSE_MESSAGE_WORD_COUNT', 'DISCUSSION_RESPONSE_MESSAGE')
+
+
+# Other Time Conversions
+todays_date = datetime.date.today()
+yesterdays_date = (todays_date - datetime.timedelta(1))
+unix_yesterdays_date = str(int(mktime(yesterdays_date.timetuple())))

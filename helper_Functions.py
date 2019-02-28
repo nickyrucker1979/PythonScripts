@@ -61,3 +61,11 @@ def count_words(dataframe, new_field, countwordfield):
 todays_date = datetime.date.today()
 yesterdays_date = (todays_date - datetime.timedelta(1))
 unix_yesterdays_date = str(int(mktime(yesterdays_date.timetuple())))
+
+# % to Float Conversions
+def percent_sign_to_float(x):
+    return float(x.strip('%')) / 100
+
+def df_convert_percent(dataframe, field):
+    dataframe[field] = dataframe[field].apply(lambda x: percent_sign_to_float(x))
+    return
